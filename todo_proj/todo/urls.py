@@ -16,7 +16,13 @@ Including another URLconf
 from django.conf.urls import include, url
 from todo.views import MainUserView
 from django.contrib.auth.decorators import login_required
+from todo.viewsets import TodoViewSet
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'todo', TodoViewSet)
 
 urlpatterns = [
+    url(r'^api/v1/', include(router.urls)),
     url(r'^main/', login_required(MainUserView.as_view()), name='main'),
 ]
