@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from todo.views import CreateUserView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^todo/', include('todo.urls')),
+    url('', include('django.contrib.auth.urls')),
+    url('^create_user/', CreateUserView.as_view(), name='CreateUser'),
 ]
